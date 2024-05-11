@@ -6,7 +6,7 @@ import unibuc.clinicmngmnt.domain.Clinic;
 import unibuc.clinicmngmnt.domain.Doctor;
 import unibuc.clinicmngmnt.domain.Speciality;
 import unibuc.clinicmngmnt.domain.Patient;
-import unibuc.clinicmngmnt.domain.Prescription;
+import unibuc.clinicmngmnt.domain.Task;
 import unibuc.clinicmngmnt.dto.AppointmentDto;
 import unibuc.clinicmngmnt.mapper.AppointmentMapper;
 
@@ -56,7 +56,7 @@ public class AppointmentServiceTest {
     private Clinic clinic = new Clinic("Name", "Address");
     private Doctor doctor = new Doctor("John", "Smith", Speciality.SURGEON, clinic);
     private Patient patient = new Patient("Will", "West", "123456789", "test@email.com", currentDateLocalDate);
-    private Prescription prescription = new Prescription("Comments");
+    private Task task = new Task("Comments");
     private AppointmentDto appointmentDto = new AppointmentDto(patientId, doctorId, currentDateTimeStart,
             currentDateTimeEnd, comments);
     private Appointment appointmentSaveParam = new Appointment(currentDateTimeStart, currentDateTimeEnd,
@@ -65,7 +65,7 @@ public class AppointmentServiceTest {
             comments);
     private Appointment appointment = new Appointment(appointmentId, patient, doctor, currentDateTimeStart,
             currentDateTimeEnd, comments,
-            prescription);
+            task);
     List<Appointment> existingAppointments = new ArrayList<Appointment>();
 
     @Test
@@ -144,7 +144,7 @@ public class AppointmentServiceTest {
         assertEquals(appointment.getStartDate(), gottenAppointment.getStartDate());
         assertEquals(appointment.getEndDate(), gottenAppointment.getEndDate());
         assertEquals(appointment.getComments(), gottenAppointment.getComments());
-        assertEquals(appointment.getPrescription().getId(), gottenAppointment.getPrescription().getId());
+        assertEquals(appointment.getTask().getId(), gottenAppointment.getTask().getId());
     }
 
     @Test

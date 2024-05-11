@@ -95,9 +95,9 @@ public class ErrorControllerAdvice {
         return modelAndView;
     }
 
-    @ExceptionHandler({PrescriptionAlreadyExistingException.class})
+    @ExceptionHandler({TaskAlreadyExistingException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ModelAndView handle(PrescriptionAlreadyExistingException exception) {
+    public ModelAndView handle(TaskAlreadyExistingException exception) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModel().put("message", exception.getMessage());

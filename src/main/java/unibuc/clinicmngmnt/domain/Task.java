@@ -11,22 +11,22 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Prescription {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne(mappedBy = "prescription")
+    @OneToOne(mappedBy = "task")
     @JsonIgnore
     private Appointment appointment;
     private String comments;
     @ManyToMany
-    @JoinTable(name = "prescription_part",
-            joinColumns = @JoinColumn(name = "prescription_id"),
+    @JoinTable(name = "task_part",
+            joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "part_id"))
     @ToString.Exclude
     private List<Part> parts;
 
-    public Prescription(String comments) {
+    public Task(String comments) {
         this.comments = comments;
     }
 

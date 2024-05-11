@@ -15,17 +15,17 @@
     <h2 th:text="@{'Appointment'+ ' ' + ${object.id}}"></h2>
     <div th:text="@{${#temporals.format(object.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(object.endDate, 'dd.MM.yyyy HH:mm')}}"></div>
     <div class="d-flex justify-content-between align-items-center">
-        <h3>Prescription:</h3>
+        <h3>Interventie:</h3>
     </div>
-    <div th:if="${object.prescription != null}">
-        <h4 th:text="${object.prescription.comments}"></h4>
-        <table th:if="${ not #lists.isEmpty(object.prescription.parts)}" class="table table-striped">
+    <div th:if="${object.task != null}">
+        <h4 th:text="${object.task.comments}"></h4>
+        <table th:if="${ not #lists.isEmpty(object.task.parts)}" class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Brand</th>
             </tr>
-            <tr th:each="part,iterationStatus : ${object.prescription.parts}">
+            <tr th:each="part,iterationStatus : ${object.task.parts}">
                 <td th:text="${part.id}">ID</td>
                 <td th:text="${part.name}">Nume</td>
                 <td th:text="${part.brand}">Brand</td>
@@ -33,7 +33,7 @@
             </tr>
         </table>
     </div>
-    <div th:if="${not (object.prescription != null)}">
+    <div th:if="${not (object.task != null)}">
         Nu exista date
     </div>
 

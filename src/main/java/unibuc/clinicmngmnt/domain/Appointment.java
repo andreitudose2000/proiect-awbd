@@ -3,7 +3,6 @@ package unibuc.clinicmngmnt.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,9 +27,9 @@ public class Appointment {
     private LocalDateTime endDate;
     private String comments;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "prescription_id")
+    @JoinColumn(name = "task_id")
     @ToString.Exclude
-    private Prescription prescription;
+    private Task task;
 
     public Appointment(LocalDateTime startDate, LocalDateTime endDate, String comments) {
         this.startDate = startDate;

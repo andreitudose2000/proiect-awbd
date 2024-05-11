@@ -22,7 +22,7 @@ public class Part {
     private String brand;
     @JsonIgnore
     @ManyToMany(mappedBy = "parts")
-    private List<Prescription> prescriptions;
+    private List<Task> tasks;
 
     public Part(String name, String brand) {
         this.name = name;

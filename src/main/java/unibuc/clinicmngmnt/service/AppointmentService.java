@@ -15,7 +15,7 @@ import unibuc.clinicmngmnt.domain.Patient;
 import unibuc.clinicmngmnt.repository.AppointmentRepository;
 import unibuc.clinicmngmnt.repository.DoctorRepository;
 import unibuc.clinicmngmnt.repository.PatientRepository;
-import unibuc.clinicmngmnt.repository.PrescriptionRepository;
+import unibuc.clinicmngmnt.repository.TaskRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +27,7 @@ public class AppointmentService {
     private final PatientRepository patientRepository;
     private final AppointmentMapper appointmentMapper;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, PatientRepository patientRepository, PrescriptionRepository prescriptionRepository, AppointmentMapper appointmentMapper) {
+    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, PatientRepository patientRepository, TaskRepository taskRepository, AppointmentMapper appointmentMapper) {
         this.appointmentRepository = appointmentRepository;
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;

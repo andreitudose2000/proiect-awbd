@@ -19,7 +19,7 @@
                 <li><a href="/doctors" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'doctors')} ? 'link-secondary' : 'link-dark'">Doctors</a></li>
                 <li><a href="/patients" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'patients')} ? 'link-secondary' : 'link-dark'">Patients</a></li>
                 <li><a href="/appointments" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'appointments')} ? 'link-secondary' : 'link-dark'">Appointments</a></li>
-                <li><a sec:authorize="hasRole('ADMIN')" href="/prescriptions" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'prescriptions')} ? 'link-secondary' : 'link-dark'">Prescriptions</a></li>
+                <li><a sec:authorize="hasRole('ADMIN')" href="/tasks" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'tasks')} ? 'link-secondary' : 'link-dark'">Interventii</a></li>
                 <li><a sec:authorize="hasRole('ADMIN')" href="/parts" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'parts')} ? 'link-secondary' : 'link-dark'">Piese</a></li>
             </ul>
 

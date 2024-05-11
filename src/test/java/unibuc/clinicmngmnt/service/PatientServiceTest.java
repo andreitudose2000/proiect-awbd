@@ -15,13 +15,12 @@ import unibuc.clinicmngmnt.repository.PatientRepository;
 import unibuc.clinicmngmnt.exception.NotFoundException;
 import unibuc.clinicmngmnt.domain.Appointment;
 import unibuc.clinicmngmnt.domain.Doctor;
-import unibuc.clinicmngmnt.domain.Prescription;
+import unibuc.clinicmngmnt.domain.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -138,7 +137,7 @@ public class PatientServiceTest {
 
         List<Appointment> appointments = new ArrayList<Appointment>();
         Doctor doctor = null;
-        Prescription prescription = null;
+        Task task = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime nextEndDate = LocalDateTime.parse("2023-04-24 08:45", formatter),
                 nextStartDate = LocalDateTime.parse("2023-04-24 08:00", formatter),
@@ -147,9 +146,9 @@ public class PatientServiceTest {
 
         Appointment nextAppointment = new Appointment(1l, patient, doctor, nextStartDate, nextEndDate,
                 "next - should be returned",
-                prescription),
+                task),
                 passedAppointment = new Appointment(2l, patient, doctor, passedStartDate, passedEndDate,
-                        "passed - should not be returned", prescription);
+                        "passed - should not be returned", task);
         appointments.add(nextAppointment);
         appointments.add(passedAppointment);
 

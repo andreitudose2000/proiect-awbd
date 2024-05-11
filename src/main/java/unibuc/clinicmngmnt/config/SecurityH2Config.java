@@ -48,7 +48,7 @@ public class SecurityH2Config extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/parts/**").hasAnyRole("ADMIN")
-                .antMatchers("/prescriptions/**").hasRole("ADMIN")
+                .antMatchers("/tasks/**").hasRole("ADMIN")
                 .antMatchers("/clinics/*").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/doctors/**").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/appointments/**").hasAnyRole("GUEST","ADMIN")
