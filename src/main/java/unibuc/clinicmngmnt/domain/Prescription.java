@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -21,11 +20,11 @@ public class Prescription {
     private Appointment appointment;
     private String comments;
     @ManyToMany
-    @JoinTable(name = "prescription_medication",
+    @JoinTable(name = "prescription_part",
             joinColumns = @JoinColumn(name = "prescription_id"),
-            inverseJoinColumns = @JoinColumn(name = "medication_id"))
+            inverseJoinColumns = @JoinColumn(name = "part_id"))
     @ToString.Exclude
-    private List<Medication> medications;
+    private List<Part> parts;
 
     public Prescription(String comments) {
         this.comments = comments;

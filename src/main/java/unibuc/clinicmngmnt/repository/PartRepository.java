@@ -2,8 +2,8 @@ package unibuc.clinicmngmnt.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import unibuc.clinicmngmnt.domain.Medication;
+import unibuc.clinicmngmnt.domain.Part;
 
 @Repository
-public interface MedicationRepository extends JpaRepository<Medication, Long> {
+public interface PartRepository extends JpaRepository<Part, Long> {
 }

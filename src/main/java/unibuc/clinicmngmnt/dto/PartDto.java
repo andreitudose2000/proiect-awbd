@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MedicationDto {
+public class PartDto {
     @NotBlank(message = "Name must be provided")
     private String name;
     @NotBlank(message = "Brand must be provided")

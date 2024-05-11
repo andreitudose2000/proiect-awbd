@@ -14,17 +14,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Medication {
+public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String brand;
     @JsonIgnore
-    @ManyToMany(mappedBy = "medications")
+    @ManyToMany(mappedBy = "parts")
     private List<Prescription> prescriptions;
 
-    public Medication(String name, String brand) {
+    public Part(String name, String brand) {
         this.name = name;
         this.brand = brand;
     }

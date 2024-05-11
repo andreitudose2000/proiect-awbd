@@ -23,7 +23,7 @@ public class SecurityJpaConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyRole("GUEST","ADMIN")
-                .antMatchers("/medications/**").hasAnyRole("ADMIN")
+                .antMatchers("/parts/**").hasAnyRole("ADMIN")
                 .antMatchers("/prescriptions/**").hasRole("ADMIN")
                 .antMatchers("/clinics/*").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/doctors/**").hasAnyRole("GUEST","ADMIN")

@@ -19,22 +19,22 @@
     </div>
     <div th:if="${object.prescription != null}">
         <h4 th:text="${object.prescription.comments}"></h4>
-        <table th:if="${ not #lists.isEmpty(object.prescription.medications)}" class="table table-striped">
+        <table th:if="${ not #lists.isEmpty(object.prescription.parts)}" class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Brand</th>
             </tr>
-            <tr th:each="medication,iterationStatus : ${object.prescription.medications}">
-                <td th:text="${medication.id}">ID</td>
-                <td th:text="${medication.name}">Name</td>
-                <td th:text="${medication.brand}">Brand</td>
+            <tr th:each="part,iterationStatus : ${object.prescription.parts}">
+                <td th:text="${part.id}">ID</td>
+                <td th:text="${part.name}">Nume</td>
+                <td th:text="${part.brand}">Brand</td>
 
             </tr>
         </table>
     </div>
     <div th:if="${not (object.prescription != null)}">
-        No data
+        Nu exista date
     </div>
 
 

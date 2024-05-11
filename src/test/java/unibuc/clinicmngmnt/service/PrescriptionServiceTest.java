@@ -7,19 +7,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import unibuc.clinicmngmnt.domain.*;
 import unibuc.clinicmngmnt.dto.PrescriptionDto;
 import unibuc.clinicmngmnt.mapper.PrescriptionMapper;
-import unibuc.clinicmngmnt.domain.Prescription;
 import unibuc.clinicmngmnt.repository.AppointmentRepository;
 import unibuc.clinicmngmnt.repository.PrescriptionRepository;
-import unibuc.clinicmngmnt.domain.Appointment;
-import unibuc.clinicmngmnt.domain.Medication;
-import unibuc.clinicmngmnt.domain.Patient;
-import unibuc.clinicmngmnt.domain.Doctor;
+import unibuc.clinicmngmnt.domain.Part;
 import unibuc.clinicmngmnt.exception.NotFoundException;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +40,10 @@ public class PrescriptionServiceTest {
     long appointmentId = 1, prescriptionId = 2;
     String comments = "Comments";
     LocalDateTime startDate = LocalDateTime.now(), endDate = LocalDateTime.now();
-    private List<Medication> medications = new ArrayList<Medication>();
+    private List<Part> parts = new ArrayList<Part>();
     private Appointment appointment = new Appointment(appointmentId, (Patient) null, (Doctor) null, startDate, endDate, "no comments", (Prescription) null);
     private PrescriptionDto prescriptionDto = new PrescriptionDto(appointmentId, comments);
-    private Prescription prescription = new Prescription(prescriptionId, appointment, comments, medications);
+    private Prescription prescription = new Prescription(prescriptionId, appointment, comments, parts);
 
     @Test
     @DisplayName("Create prescription - happy flow")

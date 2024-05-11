@@ -60,12 +60,12 @@ public class PrescriptionController {
     }
 
     @GetMapping("/info/{id}")
-    public String getPrescriptionMedications(
+    public String getPrescriptionParts(
             Model model,
             @PathVariable
             Long id) {
         Prescription prescription = prescriptionService.getPrescription(id);
-        model.addAttribute("medications", prescription.getMedications());
+        model.addAttribute("parts", prescription.getParts());
 
         return "prescriptions/prescriptionsInfo.html";
     }
