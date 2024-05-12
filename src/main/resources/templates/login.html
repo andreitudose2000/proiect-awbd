@@ -46,18 +46,18 @@
 <body class="text-center">
   <main class="form-signin w-100 m-auto">
     <form class="form-signin" method="post" th:action="authUser">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <p th:if="${param.error}" class="text-danger">Invalid user or password</p>
+      <h2 class="form-signin-heading">Login</h2>
+      <p th:if="${param.error}" class="text-danger">User si/sau parola incorecte</p>
       <p>
       <label for="username" class="sr-only">Username</label>
       <input type="text" id="username" name="username" class="form-control" placeholder="username" required autofocus>
       </p>
       <p>
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+        <label for="password" class="sr-only">Parola</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="parola" required>
       </p>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Autentificare</button>
     </form>
   </main>
 

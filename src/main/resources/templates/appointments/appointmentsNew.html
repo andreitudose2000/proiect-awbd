@@ -16,7 +16,7 @@
         <h2>Adauga programare</h2>
         <form th:object="${appointmentDto}" th:action="@{/appointments}" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="mechanicId" class="form-label">ID mechanic</label>
+                <label for="mechanicId" class="form-label">ID mecanic</label>
                 <input type="text" class="form-control" id="mechanicId" th:field="*{mechanicId}">
                 <label class="text-danger" th:if="${#fields.hasErrors('mechanicId')}" th:errors="*{mechanicId}">
             </div>

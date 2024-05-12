@@ -30,7 +30,7 @@
                 <div class="mb-3">
                     <label for="speciality" class="form-label">Specialitate</label>
                     <select id="speciality" th:field="*{speciality}">
-                        <option th:each="speciality : ${T(unibuc.clinicmngmnt.domain.Speciality).values()}"
+                        <option th:each="speciality : ${T(unibuc.carServiceManagement.domain.Speciality).values()}"
                             th:value="${speciality}" th:text="${speciality.displayName}">
                         </option>
                     </select>
@@ -38,9 +38,9 @@
                     </label>
                 </div>
                 <div class="mb-3">
-                    <label for="clinicId" class="form-label">ID Service</label>
-                    <input type="text" class="form-control" id="clinicId" th:field="*{clinicId}">
-                    <label class="text-danger" th:if="${#fields.hasErrors('clinicId')}" th:errors="*{clinicId}">
+                    <label for="carServiceId" class="form-label">ID Service</label>
+                    <input type="text" class="form-control" id="carServiceId" th:field="*{carServiceId}">
+                    <label class="text-danger" th:if="${#fields.hasErrors('carServiceId')}" th:errors="*{carServiceId}">
                 </div>
                 <button type="submit" class="btn btn-primary">Adauga</button>
             </form>

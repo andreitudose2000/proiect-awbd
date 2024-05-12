@@ -37,7 +37,7 @@
                 <td th:text="${mechanic.lastName}"></td>
                 <td th:text="${mechanic.firstName}"></td>
                 <td th:text="${mechanic.speciality.displayName}"></td>
-                <td th:text="${mechanic?.clinic?.name}"></td>
+                <td th:text="${mechanic?.carService?.name}"></td>
                 <td>
                     <a th:href="${'/mechanics/info/' + mechanic.id}" class="text-decoration-none btn btn-outline-primary"
                        role="button">

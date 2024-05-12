@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>unibuc</groupId>
-	<artifactId>clinicMngmnt</artifactId>
+	<artifactId>carServiceManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>clinicMngmnt</name>
-	<description>clinicMngmnt</description>
+	<name>carServiceManagement</name>
+	<description>carServiceManagement</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

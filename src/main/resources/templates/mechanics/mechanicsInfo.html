@@ -14,7 +14,7 @@
 <div class="container">
     <div>
         <h2 th:text="@{${object.firstName} + ' ' + ${object.lastName}}"></h2>
-        <div th:text="${object.speciality}"></div>
+        <div th:text="${object.speciality.getDisplayName()}"></div>
         <h3>Programari:</h3>
         <table th:if="${not #lists.isEmpty(object.appointments)}" class="table table-striped">
             <tr>
