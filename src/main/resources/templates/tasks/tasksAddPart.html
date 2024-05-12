@@ -16,10 +16,10 @@
     <div class="container">
         <div>
             <h2>Adauga piesa</h2>
-            <form th:object="${addPartDto}" th:action="@{'/tasks/info/' + ${taskId} + '/add-part'}" method="POST"
+            <form th:object="${taskAddPartDto}" th:action="@{'/tasks/info/' + ${taskId} + '/add-part'}" method="POST"
                 enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="partId" class="form-label">ID Piesa</label>
+                    <label for="partId" class="form-label">ID piesa</label>
                     <input type="text" class="form-control" id="partId" th:field="*{partId}">
                     <label class="text-danger" th:if="${#fields.hasErrors('partId')}" th:errors="*{partId}">
                 </div>

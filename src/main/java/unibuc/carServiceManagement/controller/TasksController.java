@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import unibuc.carServiceManagement.domain.Task;
 import unibuc.carServiceManagement.dto.TaskAddPartDto;
 import unibuc.carServiceManagement.dto.TaskDto;
+import unibuc.carServiceManagement.exception.NotFoundException;
 import unibuc.carServiceManagement.exception.TaskAlreadyExistingException;
 import unibuc.carServiceManagement.service.TaskService;
 
@@ -48,6 +49,9 @@ public class TasksController {
         } catch(TaskAlreadyExistingException exception) {
             bindingResult.rejectValue("appointmentId", "taskAlreadyAssignedToAppt", exception.getMessage());
             return "tasks/tasksNew.html";
+        } catch (final NotFoundException exception) {
+            bindingResult.rejectValue("appointmentId", "appointmentDoesntExist", exception.getMessage());
+            return "tasks/tasksNew.html";
         }
 
     }
@@ -76,7 +80,7 @@ public class TasksController {
     public String addPart(@PathVariable int id, Model model) {
 
         model.addAttribute("taskId", id);
-        model.addAttribute("addPartDto", new TaskAddPartDto());
+        model.addAttribute("taskAddPartDto", new TaskAddPartDto());
 
         return "tasks/tasksAddPart.html";
     }
@@ -93,10 +97,10 @@ public class TasksController {
 
         try {
             taskService.addPart(id, taskAddPartDto);
-            return "redirect:/tasks";
-        } catch(TaskAlreadyExistingException exception) {
-            bindingResult.rejectValue("appointmentId", "taskAlreadyAssignedToAppt", exception.getMessage());
-            return "tasks/tasksNew.html";
+            return "redirect:/tasks/info/" + id;
+        } catch (final NotFoundException exception) {
+            bindingResult.rejectValue("partId", "partDoesntExist", exception.getMessage());
+            return "tasks/tasksAddPart.html";
         }
     }
 

@@ -66,7 +66,7 @@ public class TaskService {
                 .orElseThrow(() -> new NotFoundException("Interventia cu ID " + id + " nu a fost gasita"));
 
         Part part = partRepository.findById(taskAddPartDto.getPartId())
-                .orElseThrow(() -> new NotFoundException("Piesa cu ID " + id + " nu a fost gasita"));
+                .orElseThrow(() -> new NotFoundException("Piesa cu ID " + taskAddPartDto.getPartId() + " nu a fost gasita"));
 
         List<Part> parts = task.getParts();
 

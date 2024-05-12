@@ -6,15 +6,10 @@
 </head>
 <body>
     <div th:fragment="navbar (activePage)" class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="/static" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
-            </a>
-
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/index" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'home')} ? 'link-secondary' : 'link-dark'">Home</a></li>
+        <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-start mb-md-0">
+                <li><a href="/index" class="nav-link px-2 link-dark"><i class="fas fa-car"></i></a></li>
+                <li><a href="/index" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'home')} ? 'link-secondary' : 'link-dark'">Acasa</a></li>
                 <li><a href="/car-services" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'car-services')} ? 'link-secondary' : 'link-dark'" >Service-uri</a></li>
                 <li><a href="/mechanics" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'mechanics')} ? 'link-secondary' : 'link-dark'">Mecanici</a></li>
                 <li><a href="/clients" class="nav-link px-2" th:classappend="${#strings.equals(activePage,'clients')} ? 'link-secondary' : 'link-dark'">Clienti</a></li>

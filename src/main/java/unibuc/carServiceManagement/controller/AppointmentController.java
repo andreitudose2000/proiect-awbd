@@ -8,6 +8,7 @@ import unibuc.carServiceManagement.domain.Appointment;
 import unibuc.carServiceManagement.dto.AppointmentDto;
 import unibuc.carServiceManagement.dto.AppointmentRescheduleDto;
 import unibuc.carServiceManagement.exception.AppointmentsOverlappingException;
+import unibuc.carServiceManagement.exception.NotFoundException;
 import unibuc.carServiceManagement.exception.WrongDatesOrderException;
 import unibuc.carServiceManagement.service.AppointmentService;
 
@@ -47,6 +48,13 @@ public class AppointmentController {
 
         } catch (AppointmentsOverlappingException | WrongDatesOrderException exception) {
             bindingResult.rejectValue("startDate", "wrongAppointmentDates", exception.getMessage());
+            return "appointments/appointmentsNew.html";
+        } catch (final NotFoundException exception) {
+            if (exception.getMessage().startsWith("Mecanicul")) {
+                bindingResult.rejectValue("mechanicId", "mechanicDoesntExist", exception.getMessage());
+            } else {
+                bindingResult.rejectValue("clientId", "clientDoesntExist", exception.getMessage());
+            }
             return "appointments/appointmentsNew.html";
         }
 
