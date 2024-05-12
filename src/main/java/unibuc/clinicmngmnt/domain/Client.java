@@ -14,13 +14,11 @@ import java.util.List;
 @Builder
 @Entity
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Patient {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "dob")
-    private LocalDate dateOfBirth;
     private String email;
     @Column(name = "first_name")
     private String firstName;
@@ -29,23 +27,21 @@ public class Patient {
     private String phone;
     @JsonIgnore
     @ToString.Exclude
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 
-    public Patient(String firstName, String lastName, String phone, String email, LocalDate dateOfBirth) {
+    public Client(String firstName, String lastName, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
     }
 
-    public Patient(String firstName, String lastName, String phone, String email, LocalDate dateOfBirth, List<Appointment> appointments) {
+    public Client(String firstName, String lastName, String phone, String email, List<Appointment> appointments) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
         this.appointments = appointments;
     }
 }

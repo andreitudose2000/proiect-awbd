@@ -73,8 +73,8 @@ public class AppointmentController {
             @RequestParam(required = false)
             Long doctorId,
             @RequestParam(required = false)
-            Long patientId) {
-        List<Appointment> appointments = appointmentService.getAllAppointments(patientId, doctorId);
+            Long clientId) {
+        List<Appointment> appointments = appointmentService.getAllAppointments(clientId, doctorId);
         model.addAttribute("appointments", appointments);
         return "appointments/appointmentsList.html";
     }

@@ -4,9 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import unibuc.clinicmngmnt.domain.Patient;
+import unibuc.clinicmngmnt.domain.Client;
 
 @Repository
-public interface PatientRepository extends JpaRepository<Patient, Long> {
-    Page<Patient> findAll(Pageable page);
+public interface ClientRepository extends JpaRepository<Client, Long> {
+    Page<Client> findAll(Pageable page);
 }

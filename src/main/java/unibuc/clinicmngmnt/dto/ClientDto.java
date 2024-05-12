@@ -18,7 +18,7 @@ import static unibuc.clinicmngmnt.domain.Pattern.PHONE_NO;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientDto {
+public class ClientDto {
     @NotBlank(message = "First name must be provided")
     private String firstName;
     @NotBlank(message = "Last name must be provided")
@@ -29,7 +29,4 @@ public class PatientDto {
             "###.###.####")
     private String phone;
     private String email;
-    @NotNull(message = "Date of birth must be provided")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth;
 }

@@ -11,9 +11,9 @@ INSERT INTO DOCTOR VALUES(4, 'Prenume4', 'Nume4', 'SURGEON', 3);
 
 
 
-INSERT INTO PATIENT VALUES(1, '1999-07-07', 'email@email.com', 'Prenume1', 'Nume1', '123 456 7890');
-INSERT INTO PATIENT VALUES(2, '1999-07-07', 'email@email.com', 'Prenume2', 'Nume2', '123 456 7890');
-INSERT INTO PATIENT VALUES(3, '1999-07-07', 'email@email.com', 'Prenume3', 'Nume3', '123 456 7890');
+INSERT INTO CLIENT VALUES(1, '1999-07-07', 'email@email.com', 'Prenume1', 'Nume1', '123 456 7890');
+INSERT INTO CLIENT VALUES(2, '1999-07-07', 'email@email.com', 'Prenume2', 'Nume2', '123 456 7890');
+INSERT INTO CLIENT VALUES(3, '1999-07-07', 'email@email.com', 'Prenume3', 'Nume3', '123 456 7890');
 
 
 INSERT INTO TASK VALUES(1, 'Comment');

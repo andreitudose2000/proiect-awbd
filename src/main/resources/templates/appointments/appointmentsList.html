@@ -26,7 +26,7 @@
         <table th:if="${not #lists.isEmpty(appointments)}" class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Patient</th>
+                <th>Client</th>
                 <th>Doctor</th>
                 <th>Specialty</th>
                 <th>Time frame</th>
@@ -35,7 +35,7 @@
             </tr>
             <tr th:each="appointment,iterationStatus : ${appointments}">
                 <td th:text="${appointment.id}">ID</td>
-                <td th:text="@{${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName} }">Doctor</td>
+                <td th:text="@{${appointment.client.firstName} + ' ' + ${appointment.client.lastName} }">Doctor</td>
                 <td th:text="@{${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName} }">Doctor</td>
                 <td th:text="${appointment.doctor.speciality.displayName}">Specialty</td>
                 <td th:text="@{${#temporals.format(appointment.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(appointment.endDate, 'dd.MM.yyyy HH:mm')}}" >Time frame</td>

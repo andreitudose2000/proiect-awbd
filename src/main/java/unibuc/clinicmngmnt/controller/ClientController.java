@@ -8,71 +8,71 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import unibuc.clinicmngmnt.domain.Appointment;
-import unibuc.clinicmngmnt.domain.Patient;
-import unibuc.clinicmngmnt.dto.PatientDto;
-import unibuc.clinicmngmnt.service.PatientService;
+import unibuc.clinicmngmnt.domain.Client;
+import unibuc.clinicmngmnt.dto.ClientDto;
+import unibuc.clinicmngmnt.service.ClientService;
 import unibuc.clinicmngmnt.utility.Utils;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/patients")
-public class PatientController {
-    private final PatientService patientService;
+@RequestMapping("/clients")
+public class ClientController {
+    private final ClientService clientService;
 
     // @Autowired implied
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     @GetMapping("/new")
-    public String createPatient(Model model) {
-        model.addAttribute("patientDto", new PatientDto());
+    public String createClient(Model model) {
+        model.addAttribute("clientDto", new ClientDto());
 
-        return "patients/patientsNew.html";
+        return "clients/clientsNew.html";
     }
 
     @PostMapping
-    public String createPatient(
+    public String createClient(
             @Valid
             @ModelAttribute
-            PatientDto patientDto,
+            ClientDto clientDto,
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "patients/patientsNew.html";
+            return "clients/clientsNew.html";
         }
 
-        Patient createdPatient = patientService.createPatient(patientDto);
-        return "redirect:/patients";
+        clientService.createClient(clientDto);
+        return "redirect:/clients";
 
     }
 
     @GetMapping("/info/{id}")
-    public String getPatient(
+    public String getClient(
             Model model,
             @PathVariable
             Long id) {
-        Patient patient = patientService.getPatient(id);
-        model.addAttribute("object", patient);
+        Client client = clientService.getClient(id);
+        model.addAttribute("object", client);
 
-        return "patients/patientsInfo.html";
+        return "clients/clientsInfo.html";
     }
 
     @GetMapping("/info/{id}/upcomingAppointments")
-    public String getPatientUpcomingAppointments(
+    public String getClientUpcomingAppointments(
             Model model,
             @PathVariable
             Long id) {
-        List<Appointment> appointments = patientService.getPatientUpcomingAppointments(id);
+        List<Appointment> appointments = clientService.getClientUpcomingAppointments(id);
         model.addAttribute("appointments", appointments);
-        return "patients/patientsFutureAppointments.html";
+        return "clients/clientsFutureAppointments.html";
     }
 
     @GetMapping
     // Default status code 200 (ok)
-    public String getAllPatients(
+    public String getAllClients(
             Model model,
             @RequestParam(defaultValue = "0")
             int page,
@@ -86,18 +86,18 @@ public class PatientController {
         List<Sort.Order> orders = Utils.createSortOrder(sortList, sortOrder.toString());
 
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(orders));
-        Page<Patient> patientaPage = patientService.getAllPatients(pageRequest);
-        model.addAttribute("page", patientaPage);
+        Page<Client> clientsPage = clientService.getAllClients(pageRequest);
+        model.addAttribute("page", clientsPage);
 
-        return "patients/patientsList.html";
+        return "clients/clientsList.html";
     }
 
     @RequestMapping("/delete/{id}")
-    public String deletePatient(
+    public String deleteClient(
             @PathVariable
             Long id) {
-        patientService.deletePatient(id);
-        return "redirect:/patients";
+        clientService.deleteClient(id);
+        return "redirect:/clients";
 
     }
 }

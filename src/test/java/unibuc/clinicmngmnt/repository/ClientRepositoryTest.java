@@ -8,10 +8,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import unibuc.clinicmngmnt.domain.Patient;
+import unibuc.clinicmngmnt.domain.Client;
 
 import java.util.List;
 import static org.junit.Assert.assertTrue;
@@ -21,19 +20,19 @@ import static org.junit.Assert.assertTrue;
 @AutoConfigureTestDatabase(replace =
         AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("h2")
-public class PatientRepositoryTest {
+public class ClientRepositoryTest {
     @Autowired
-    private PatientRepository patientRepository;
+    private ClientRepository clientRepository;
     @Test
-    public void findPatients() {
-        List<Patient> products = patientRepository.findAll();
+    public void findClients() {
+        List<Client> products = clientRepository.findAll();
         assertTrue(products.size() >= 2);
 
     }
     @Test
     public void findPage(){
         Pageable firstPage = PageRequest.of(0, 2);
-        Page<Patient> patients = patientRepository.findAll(firstPage);
-        Assert.assertTrue(patients.getNumberOfElements() == 2);
+        Page<Client> clients = clientRepository.findAll(firstPage);
+        Assert.assertTrue(clients.getNumberOfElements() == 2);
     }
 }

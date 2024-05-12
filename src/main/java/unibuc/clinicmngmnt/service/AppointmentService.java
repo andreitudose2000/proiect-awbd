@@ -11,10 +11,10 @@ import unibuc.clinicmngmnt.exception.WrongDatesOrderException;
 import unibuc.clinicmngmnt.mapper.AppointmentMapper;
 import unibuc.clinicmngmnt.domain.Appointment;
 import unibuc.clinicmngmnt.domain.Doctor;
-import unibuc.clinicmngmnt.domain.Patient;
+import unibuc.clinicmngmnt.domain.Client;
 import unibuc.clinicmngmnt.repository.AppointmentRepository;
 import unibuc.clinicmngmnt.repository.DoctorRepository;
-import unibuc.clinicmngmnt.repository.PatientRepository;
+import unibuc.clinicmngmnt.repository.ClientRepository;
 import unibuc.clinicmngmnt.repository.TaskRepository;
 
 import java.util.List;
@@ -24,19 +24,19 @@ import java.util.stream.Collectors;
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final DoctorRepository doctorRepository;
-    private final PatientRepository patientRepository;
+    private final ClientRepository clientRepository;
     private final AppointmentMapper appointmentMapper;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, PatientRepository patientRepository, TaskRepository taskRepository, AppointmentMapper appointmentMapper) {
+    public AppointmentService(AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, ClientRepository clientRepository, TaskRepository taskRepository, AppointmentMapper appointmentMapper) {
         this.appointmentRepository = appointmentRepository;
         this.doctorRepository = doctorRepository;
-        this.patientRepository = patientRepository;
+        this.clientRepository = clientRepository;
         this.appointmentMapper = appointmentMapper;
     }
 
     public Appointment createAppointment(AppointmentDto appointmentDto) {
         Long doctorId = appointmentDto.getDoctorId();
-        Long patientId = appointmentDto.getPatientId();
+        Long clientId = appointmentDto.getClientId();
 
         Appointment appointment = appointmentMapper.appointmentDtoToAppointment(appointmentDto);
 
@@ -45,10 +45,10 @@ public class AppointmentService {
                 .orElseThrow(() -> new NotFoundException("Doctor with ID " + doctorId + " not found."));
         appointment.setDoctor(doctor);
 
-        // check if patient exists
-        Patient patient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new NotFoundException("Patient with ID " + patientId + " not found."));
-        appointment.setPatient(patient);
+        // check if client exists
+        Client client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new NotFoundException("Clientul cu ID " + clientId + " nu a fost gasit."));
+        appointment.setClient(client);
 
         //check for date in wrong order
         boolean bWrongDatesOrder = appointment.getStartDate().isAfter(appointment.getEndDate());
@@ -60,9 +60,9 @@ public class AppointmentService {
         List<Appointment> appointments = appointmentRepository.findAll();
         List<Appointment> timeOverlappingAppointments = appointments.stream()
                 .filter(appointment1 -> appointment1.getStartDate().isBefore(appointment.getEndDate()) && appointment1.getEndDate().isAfter(appointment.getStartDate())).collect(Collectors.toList());
-        boolean bOverlappingDoctorOrPatient = timeOverlappingAppointments.stream().anyMatch(appointment1 -> appointment1.getDoctor().getId() == doctorId || appointment1.getPatient().getId() == patientId);
+        boolean bOverlappingDoctorOrClient = timeOverlappingAppointments.stream().anyMatch(appointment1 -> appointment1.getDoctor().getId() == doctorId || appointment1.getClient().getId() == clientId);
 
-        if (bOverlappingDoctorOrPatient) {
+        if (bOverlappingDoctorOrClient) {
             throw new AppointmentsOverlappingException();
         }
 
@@ -74,16 +74,16 @@ public class AppointmentService {
                 .orElseThrow(() -> new NotFoundException("Appointment with ID " + id + " not found."));
     }
 
-    public List<Appointment> getAllAppointments(Long patientId, Long doctorId) {
+    public List<Appointment> getAllAppointments(Long clientId, Long doctorId) {
         // create example object
         Appointment appointment = new Appointment();
 
-        //check if patient exists
-        if (patientId != null) {
-            Patient patient = patientRepository.findById(patientId)
-                    .orElseThrow(() -> new NotFoundException("Patient with ID " + patientId + " not found"));
+        //check if client exists
+        if (clientId != null) {
+            Client client = clientRepository.findById(clientId)
+                    .orElseThrow(() -> new NotFoundException("Clientul cu ID " + clientId + " nu a fost gasit."));
 
-            appointment.setPatient(patient);
+            appointment.setClient(client);
         }
 
         // check if doctor exists
@@ -122,15 +122,15 @@ public class AppointmentService {
         }
 
         long doctorId = appointment.getDoctor().getId();
-        long patientId = appointment.getPatient().getId();
+        long clientId = appointment.getClient().getId();
 
         // check for overlapping appointments
         List<Appointment> appointments = appointmentRepository.findAll();
         List<Appointment> timeOverlappingAppointments = appointments.stream()
                 .filter(appointment1 -> appointment1.getStartDate().isBefore(appointment.getEndDate()) && appointment1.getEndDate().isAfter(appointment.getStartDate()) && appointment1.getId() != appointment.getId()).collect(Collectors.toList());
-        boolean bOverlappingDoctorOrPatient = timeOverlappingAppointments.stream().anyMatch(appointment1 -> appointment1.getDoctor().getId() == doctorId || appointment1.getPatient().getId() == patientId);
+        boolean bOverlappingDoctorOrClient = timeOverlappingAppointments.stream().anyMatch(appointment1 -> appointment1.getDoctor().getId() == doctorId || appointment1.getClient().getId() == clientId);
 
-        if (bOverlappingDoctorOrPatient) {
+        if (bOverlappingDoctorOrClient) {
             throw new AppointmentsOverlappingException();
         }
 

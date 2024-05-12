@@ -19,15 +19,15 @@
         <table th:if="${not #lists.isEmpty(object.appointments)}" class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Patient</th>
+                <th>Client</th>
                 <th>Time frame</th>
                 <th>Comments</th>
             </tr>
             <tr th:each="appointment,iterationStatus : ${object.appointments}">
-                <td th:text="${appointment.id}">ID</td>
-                <td th:text="@{${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName} }">Patient</td>
-                <td th:text="@{${#temporals.format(appointment.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(appointment.endDate, 'dd.MM.yyyy HH:mm')}}" >Time frame</td>
-                <td th:text="${appointment.comments}">Comments</td>
+                <td th:text="${appointment.id}"></td>
+                <td th:text="@{${appointment.client.firstName} + ' ' + ${appointment.client.lastName} }"></td>
+                <td th:text="@{${#temporals.format(appointment.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(appointment.endDate, 'dd.MM.yyyy HH:mm')}}" ></td>
+                <td th:text="${appointment.comments}"></td>
 
             </tr>
         </table>
