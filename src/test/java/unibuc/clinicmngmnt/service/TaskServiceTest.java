@@ -73,7 +73,7 @@ public class TaskServiceTest {
 
         // Assert
         assertNotNull(exception);
-        assertEquals(exception.getMessage(), String.format("Appointment with ID %d not found.", appointmentId));
+        assertEquals(exception.getMessage(), String.format("Programarea cu ID %d nu a fost gasit.", appointmentId));
     }
 
     @Test

@@ -12,6 +12,7 @@ import unibuc.clinicmngmnt.exception.WrongDatesOrderException;
 import unibuc.clinicmngmnt.mapper.AppointmentMapper;
 import unibuc.clinicmngmnt.domain.Appointment;
 import unibuc.clinicmngmnt.domain.Client;
+import unibuc.clinicmngmnt.mapper.AppointmentRescheduleMapper;
 import unibuc.clinicmngmnt.repository.AppointmentRepository;
 import unibuc.clinicmngmnt.repository.MechanicRepository;
 import unibuc.clinicmngmnt.repository.ClientRepository;
@@ -26,12 +27,14 @@ public class AppointmentService {
     private final MechanicRepository mechanicRepository;
     private final ClientRepository clientRepository;
     private final AppointmentMapper appointmentMapper;
+    private final AppointmentRescheduleMapper appointmentRescheduleMapper;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, MechanicRepository mechanicRepository, ClientRepository clientRepository, TaskRepository taskRepository, AppointmentMapper appointmentMapper) {
+    public AppointmentService(AppointmentRepository appointmentRepository, MechanicRepository mechanicRepository, ClientRepository clientRepository, TaskRepository taskRepository, AppointmentMapper appointmentMapper, AppointmentRescheduleMapper appointmentRescheduleMapper) {
         this.appointmentRepository = appointmentRepository;
         this.mechanicRepository = mechanicRepository;
         this.clientRepository = clientRepository;
         this.appointmentMapper = appointmentMapper;
+        this.appointmentRescheduleMapper = appointmentRescheduleMapper;
     }
 
     public Appointment createAppointment(AppointmentDto appointmentDto) {
@@ -71,7 +74,7 @@ public class AppointmentService {
 
     public Appointment getAppointment(Long id) {
         return appointmentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Appointment with ID " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Programarea cu ID " + id + " nu a fost gasita."));
     }
 
     public List<Appointment> getAllAppointments(Long clientId, Long mechanicId) {
@@ -104,16 +107,15 @@ public class AppointmentService {
 
     public void deleteAppointment(Long id) {
         Appointment appointment = appointmentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Appointment with ID " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Programarea cu ID " + id + " nu a fost gasit."));
         appointmentRepository.delete(appointment);
     }
 
     public Appointment rescheduleAppointment(Long id, AppointmentRescheduleDto appointmentRescheduleDto) {
         Appointment appointment = appointmentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Appointment with ID " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Programarea cu ID " + id + " nu a fost gasit."));
 
-        appointment.setEndDate(appointmentRescheduleDto.getEndDate());
-        appointment.setStartDate(appointmentRescheduleDto.getStartDate());
+        appointmentRescheduleMapper.mapToAppointment(appointmentRescheduleDto, appointment);
 
         // check for date in wrong order
         boolean bWrongDatesOrder = appointment.getStartDate().isAfter(appointment.getEndDate());

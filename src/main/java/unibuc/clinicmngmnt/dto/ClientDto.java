@@ -19,14 +19,11 @@ import static unibuc.clinicmngmnt.domain.Pattern.PHONE_NO;
 @NoArgsConstructor
 @Builder
 public class ClientDto {
-    @NotBlank(message = "First name must be provided")
+    @NotBlank(message = "Prenumele este obligatoriu")
     private String firstName;
-    @NotBlank(message = "Last name must be provided")
+    @NotBlank(message = "Numele este obligatoriu")
     private String lastName;
-    @Pattern(regexp = PHONE_NO, message = "Phone number must be provided and match one of the following formats: ###-###-####, " +
-            "(###) ###-####, " +
-            "### ### ####, " +
-            "###.###.####")
+    @Pattern(regexp = PHONE_NO, message = "Numarul de telefon trebuie sa aiba urmatorul format: (+4)0xxx xxx xxx")
     private String phone;
     private String email;
 }

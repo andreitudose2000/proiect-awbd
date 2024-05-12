@@ -68,7 +68,7 @@ public class MechanicService {
 
     public void deleteMechanic(Long id) {
         Mechanic mechanic = mechanicRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Mechanic with ID " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Mecanicul cu ID " + id + " nu a fost gasit."));
         mechanicRepository.delete(mechanic);
     }
 

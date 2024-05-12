@@ -37,7 +37,7 @@ public class ClinicService {
 
     public Clinic getClinic(Long id) {
         return clinicRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Clinic with ID " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Mecanicul cu ID " + id + " nu a fost gasit."));
     }
 
     public Page<Clinic> getAllClinics(PageRequest pageRequest) {

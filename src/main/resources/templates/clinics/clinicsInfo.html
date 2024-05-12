@@ -18,15 +18,15 @@
         <table th:if="${not #lists.isEmpty(object.mechanics)}" class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Specialty</th>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Specialitate</th>
             </tr>
             <tr th:each="mechanic,iterationStatus : ${object.mechanics}">
-                <td th:text="${mechanic.id}">ID</td>
-                <td th:text="${mechanic.firstName}">First Name</td>
-                <td th:text="${mechanic.lastName}">Last Name</td>
-                <td th:text="${mechanic.speciality.displayName}">Specialty</td>
+                <td th:text="${mechanic.id}"></td>
+                <td th:text="${mechanic.lastName}"></td>
+                <td th:text="${mechanic.firstName}"></td>
+                <td th:text="${mechanic.speciality.displayName}"></td>
 
             </tr>
         </table>

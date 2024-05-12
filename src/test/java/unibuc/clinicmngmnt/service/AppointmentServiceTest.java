@@ -50,7 +50,7 @@ public class AppointmentServiceTest {
     private LocalDate currentDateLocalDate = LocalDate.now();
     private String comments = "no comments";
     private Clinic clinic = new Clinic("Name", "Address");
-    private Mechanic mechanic = new Mechanic("John", "Smith", Speciality.SURGEON, clinic);
+    private Mechanic mechanic = new Mechanic("John", "Smith", Speciality.SUSPENSION, clinic);
     private Client client = new Client("Will", "West", "123456789", "test@email.com", currentDateLocalDate);
     private Task task = new Task("Comments");
     private AppointmentDto appointmentDto = new AppointmentDto(clientId, mechanicId, currentDateTimeStart,
@@ -124,7 +124,7 @@ public class AppointmentServiceTest {
 
         AppointmentsOverlappingException exception = assertThrows(AppointmentsOverlappingException.class,
                 () -> appointmentService.createAppointment(appointmentDto));
-        assertEquals(exception.getMessage(), String.format("Appointment is overlapping with an already existing appointment.", clientId));
+        assertEquals(exception.getMessage(), String.format("Programarea se suprapune cu o alta programare existenta.", clientId));
     }
 
     @Test
@@ -149,7 +149,7 @@ public class AppointmentServiceTest {
         when(appointmentRepository.findById(appointmentId)).thenReturn(Optional.empty());
 
         NotFoundException exception = assertThrows(NotFoundException.class, () -> appointmentService.getAppointment(appointmentId));
-        assertEquals(exception.getMessage(), String.format("Appointment with ID %d not found.", appointmentId));
+        assertEquals(exception.getMessage(), String.format("Progamarea cu ID %d nu a fost gasita.", appointmentId));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class AppointmentServiceTest {
         when(appointmentRepository.findById(appointmentId)).thenReturn(Optional.empty());
 
         NotFoundException exception = assertThrows(NotFoundException.class, () -> appointmentService.getAppointment(appointmentId));
-        assertEquals(exception.getMessage(), String.format("Appointment with ID %d not found.", appointmentId));
+        assertEquals(exception.getMessage(), String.format("Programarea cu ID %d nu a fost gasita.", appointmentId));
     }
 
     @Test
@@ -180,6 +180,6 @@ public class AppointmentServiceTest {
 
         NotFoundException exception = assertThrows(NotFoundException.class,
                 () -> appointmentService.deleteAppointment(notFoundAppointmentId));
-        assertEquals(exception.getMessage(), String.format("Appointment with ID %d not found.", notFoundAppointmentId));
+        assertEquals(exception.getMessage(), String.format("Programarea cu ID %d nu a fost gasita.", notFoundAppointmentId));
     }
 }

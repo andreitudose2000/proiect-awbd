@@ -12,8 +12,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Builder
 public class PartDto {
-    @NotBlank(message = "Name must be provided")
+    @NotBlank(message = "Numele este obligatoriu")
     private String name;
-    @NotBlank(message = "Brand must be provided")
+    @NotBlank(message = "Brandul este obligatoriu")
     private String brand;
 }

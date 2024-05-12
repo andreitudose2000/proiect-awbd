@@ -1,10 +1,10 @@
 package unibuc.clinicmngmnt.domain;
 
 public enum Speciality {
-    ENDODONTIST("Endodontist"),
-    ORTHODONTIST("Orthodontist"),
-    PERIODONTIST("Periodontist"),
-    SURGEON("Surgeon");
+    ELECTRICS("Electrica"),
+    AUTOBODY("Tinichigerie"),
+    ENGINE("Motorizare"),
+    SUSPENSION("Suspensii");
 
     private final String displayName;
 

@@ -30,8 +30,8 @@
                 <div class="mb-3">
                     <label for="speciality" class="form-label">Specialitate</label>
                     <select id="speciality" th:field="*{speciality}">
-                        <option th:each="specialty : ${T(unibuc.clinicmngmnt.domain.Speciality).values()}"
-                            th:value="${specialty}" th:text="${specialty.displayName}">
+                        <option th:each="speciality : ${T(unibuc.clinicmngmnt.domain.Speciality).values()}"
+                            th:value="${speciality}" th:text="${speciality.displayName}">
                         </option>
                     </select>
                     <label class="text-danger" th:if="${#fields.hasErrors('speciality')}" th:errors="*{speciality}">

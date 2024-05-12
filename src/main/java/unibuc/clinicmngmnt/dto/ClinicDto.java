@@ -12,8 +12,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Builder
 public class ClinicDto {
-    @NotBlank(message = "Name must be provided")
+    @NotBlank(message = "Numele este obligatoriu")
     private String name;
-    @NotBlank(message = "Address must be provided")
+    @NotBlank(message = "Adresa este obligatorie")
     private String address;
 }

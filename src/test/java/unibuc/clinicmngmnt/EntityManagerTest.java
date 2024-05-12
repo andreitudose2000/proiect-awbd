@@ -44,7 +44,7 @@ public class EntityManagerTest {
         Mechanic mechanic = new Mechanic();
         mechanic.setFirstName("PrenumeTest");
         mechanic.setLastName("NumeTest");
-        mechanic.setSpeciality(Speciality.SURGEON);
+        mechanic.setSpeciality(Speciality.SUSPENSION);
 
         clinic.setMechanics(Arrays.asList(mechanic));
         entityManager.persist(clinic);

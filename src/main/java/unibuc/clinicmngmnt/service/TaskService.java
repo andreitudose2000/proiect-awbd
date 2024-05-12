@@ -31,7 +31,7 @@ public class TaskService {
 
         // check appointment exists
         Appointment appointment = appointmentRepository.findById(appointmentId)
-                .orElseThrow(() -> new NotFoundException("Appointment with ID " + appointmentId + " not found."));
+                .orElseThrow(() -> new NotFoundException("Programarea cu ID " + appointmentId + " nu a fost gasita."));
 
         if (appointment.getTask() != null) {
             throw new TaskAlreadyExistingException(appointmentId);

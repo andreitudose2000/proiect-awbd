@@ -39,12 +39,12 @@ public class MechanicServiceTest {
     @DisplayName("Create mechanic - happy flow no clinic")
     void createMechanicHappyNoClinic() {
         // Arrange
-        MechanicDto mechanicDto = new MechanicDto("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON);
-        Mechanic mechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON);
+        MechanicDto mechanicDto = new MechanicDto("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION);
+        Mechanic mechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION);
 
         when(mechanicMapper.mechanicDtoToMechanic(mechanicDto)).thenReturn(mechanic);
 
-        Mechanic createdMechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON);
+        Mechanic createdMechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION);
         createdMechanic.setId(1);
 
         when(mechanicRepository.save(mechanic)).thenReturn(createdMechanic);
@@ -65,15 +65,15 @@ public class MechanicServiceTest {
     @DisplayName("Create mechanic - happy flow with clinic")
     void createMechanicHappyWithClinic() {
         // Arrange
-        MechanicDto mechanicDto = new MechanicDto("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON, 1L);
-        Mechanic mechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON);
+        MechanicDto mechanicDto = new MechanicDto("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION, 1L);
+        Mechanic mechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION);
         Clinic clinic = new Clinic("Clinic Name", "Clinic Address");
         clinic.setId(1);
 
         when(mechanicMapper.mechanicDtoToMechanic(mechanicDto)).thenReturn(mechanic);
         when(clinicRepository.findById(1L)).thenReturn(Optional.of(clinic));
 
-        Mechanic createdMechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SURGEON);
+        Mechanic createdMechanic = new Mechanic("Mechanic First Name", "Mechanic Last Name", Speciality.SUSPENSION);
         createdMechanic.setId(1);
         createdMechanic.setClinic(clinic);
 
@@ -117,7 +117,7 @@ public class MechanicServiceTest {
                 () -> mechanicService.getMechanic(1L));
 
         // Assert
-        assertEquals("Mechanic with ID " + "1" + " not found.", exception.getMessage());
+        assertEquals("Mecanicul cu ID " + "1" + " nu a fost gasit.", exception.getMessage());
 
     }
 
@@ -138,7 +138,7 @@ public class MechanicServiceTest {
                 () -> mechanicService.getAllMechanics(speciality, page, size, sortList, sortOrder));
 
         // Assert
-        assertEquals("Speciality must be one of the following: ENDODONTIST, ORTHODONTIST, PERIODONTIST, SURGEON", exception.getMessage());
+        assertEquals("Specialitatea trebuie sa fie una dintre urmatoarele: ELECTRICS, AUTOBODY, ENGINE, SUSPENSION", exception.getMessage());
 
     }
 
@@ -166,7 +166,7 @@ public class MechanicServiceTest {
                 () -> mechanicService.getMechanic(1L));
 
         // Assert
-        assertEquals("Mechanic with ID " + "1" + " not found.", exception.getMessage());
+        assertEquals("Mecanicul cu ID " + "1" + " nu a fost gasit.", exception.getMessage());
     }
 
 

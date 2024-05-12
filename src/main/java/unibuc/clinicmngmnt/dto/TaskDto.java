@@ -13,9 +13,9 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Builder
 public class TaskDto {
-    @NotNull(message = "Appointment ID must be provided")
+    @NotNull(message = "Appointment ID este obligatoriu")
     private Long appointmentId;
-    @Size(max = 500, message = "Text length must not be greater than 500 characters")
+    @Size(max = 500, message = "Lungimea textului nu trebuie sa depaseasca 500 caractere")
     private String comments;
 
 }

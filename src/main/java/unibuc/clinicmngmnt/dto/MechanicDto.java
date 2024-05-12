@@ -14,11 +14,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class MechanicDto {
-    @NotBlank(message = "First name must be provided")
+    @NotBlank(message = "Prenumele este obligatoriu")
     private String firstName;
-    @NotBlank(message = "Last name must be provided")
+    @NotBlank(message = "Prenumele este obligatoriu")
     private String lastName;
-    @NotNull(message = "Specialty must be provided")
+    @NotNull(message = "Specialitatea este obligatorie")
     private Speciality speciality;
 
     private Long clinicId;

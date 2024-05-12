@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class AppointmentRescheduleDto {
-    @NotNull(message = "Start date must be provided")
+    @NotNull(message = "Data si ora inceput este obligatorie")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
-    @NotNull(message = "End date must be provided")
+    @NotNull(message = "Data si ora final este obligatorie")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime endDate;
 }

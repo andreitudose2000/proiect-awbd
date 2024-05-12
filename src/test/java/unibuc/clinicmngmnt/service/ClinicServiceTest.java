@@ -87,7 +87,7 @@ public class ClinicServiceTest {
                 () -> clinicService.createClinic(clinicDto));
 
         // Assert
-        assertEquals("A clinic with the same name already exists.", exception.getMessage());
+        assertEquals("Un service cu acelasi nume deja exista.", exception.getMessage());
     }
     @Test
     @DisplayName("Get clinic - happy flow")

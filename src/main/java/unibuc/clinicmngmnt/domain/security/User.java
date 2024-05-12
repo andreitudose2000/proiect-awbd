@@ -26,12 +26,12 @@ public class User {
     @Column(name = "user_id")
     private long userId;
 
-    @NotNull(message = "Username must be provided")
+    @NotNull(message = "Usernameul este obligatoriu")
     @Size(min = 5, max = 100)
     @Column(name = "user_name")
     private String username;
 
-    @NotNull(message = "Password must be provided")
+    @NotNull(message = "Parola este obligatorie")
     @Size(min = 8)
     private String password;
 

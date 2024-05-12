@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class AppointmentDto {
     @NotNull(message = "ID client este obligatoriu")
     private Long clientId;
-    @NotNull(message = "ID client este obligatoriu")
+    @NotNull(message = "ID mecanic este obligatoriu")
     private Long mechanicId;
     @NotNull(message = "Intervalul este obligatoriu")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
