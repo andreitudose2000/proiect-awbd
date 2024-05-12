@@ -34,7 +34,7 @@ public class ClientService {
 
     public Client getClient(Long id) {
         return clientRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Clientul cu ID " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new NotFoundException("Clientul cu ID " + id + " nu a fost gasit."));
     }
 
     public Page<Client> getAllClients(PageRequest pageRequest) {
@@ -43,7 +43,7 @@ public class ClientService {
 
     public void deleteClient(Long id) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Clientul cu ID " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new NotFoundException("Clientul cu ID " + id + " nu a fost gasit."));
         clientRepository.delete(client);
     }
 

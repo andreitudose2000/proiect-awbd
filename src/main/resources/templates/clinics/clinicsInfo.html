@@ -14,24 +14,24 @@
 <div class="container">
     <div>
         <h2 th:text="@{${object.name} + ' - ' + ${object.address} }"></h2>
-        <h3>Assigned Doctors:</h3>
-        <table th:if="${not #lists.isEmpty(object.doctors)}" class="table table-striped">
+        <h3>Mecanici asignati:</h3>
+        <table th:if="${not #lists.isEmpty(object.mechanics)}" class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Specialty</th>
             </tr>
-            <tr th:each="doctor,iterationStatus : ${object.doctors}">
-                <td th:text="${doctor.id}">ID</td>
-                <td th:text="${doctor.firstName}">First Name</td>
-                <td th:text="${doctor.lastName}">Last Name</td>
-                <td th:text="${doctor.speciality.displayName}">Specialty</td>
+            <tr th:each="mechanic,iterationStatus : ${object.mechanics}">
+                <td th:text="${mechanic.id}">ID</td>
+                <td th:text="${mechanic.firstName}">First Name</td>
+                <td th:text="${mechanic.lastName}">Last Name</td>
+                <td th:text="${mechanic.speciality.displayName}">Specialty</td>
 
             </tr>
         </table>
-        <div th:if="${#lists.isEmpty(object.doctors)}">
-            No data
+        <div th:if="${#lists.isEmpty(object.mechanics)}">
+            Nu exista date
         </div>
 
 

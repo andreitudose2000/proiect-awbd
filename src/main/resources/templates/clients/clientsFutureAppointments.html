@@ -17,22 +17,22 @@
         <table th:if="${not #lists.isEmpty(appointments)}" class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Doctor</th>
-                <th>Specialty</th>
-                <th>Time frame</th>
+                <th>Mecanic</th>
+                <th>Specialitate</th>
+                <th>Data si ora</th>
                 <th>Comments</th>
             </tr>
             <tr th:each="appointment,iterationStatus : ${appointments}">
-                <td th:text="${appointment.id}">ID</td>
-                <td th:text="@{${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName} }">Doctor</td>
-                <td th:text="${appointment.doctor.speciality.displayName}">Specialty</td>
-                <td th:text="@{${#temporals.format(appointment.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(appointment.endDate, 'dd.MM.yyyy HH:mm')}}" >Time frame</td>
-                <td th:text="${appointment.comments}">Comments</td>
+                <td th:text="${appointment.id}"></td>
+                <td th:text="@{${appointment.mechanic.firstName} + ' ' + ${appointment.mechanic.lastName} }"></td>
+                <td th:text="${appointment.mechanic.speciality.displayName}"></td>
+                <td th:text="@{${#temporals.format(appointment.startDate, 'dd.MM.yyyy HH:mm')} + ' - ' + ${#temporals.format(appointment.endDate, 'dd.MM.yyyy HH:mm')}}" ></td>
+                <td th:text="${appointment.comments}"></td>
 
             </tr>
         </table>
         <div th:if="${#lists.isEmpty(appointments)}">
-            No data
+            Nu exista date
         </div>
 
 

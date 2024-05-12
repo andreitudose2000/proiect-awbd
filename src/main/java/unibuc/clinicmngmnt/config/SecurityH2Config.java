@@ -50,7 +50,7 @@ public class SecurityH2Config extends WebSecurityConfigurerAdapter {
                 .antMatchers("/parts/**").hasAnyRole("ADMIN")
                 .antMatchers("/tasks/**").hasRole("ADMIN")
                 .antMatchers("/clinics/*").hasAnyRole("GUEST","ADMIN")
-                .antMatchers("/doctors/**").hasAnyRole("GUEST","ADMIN")
+                .antMatchers("/mechanics/**").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/appointments/**").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/clients").hasAnyRole("GUEST","ADMIN")
                 .antMatchers("/clients/info/*").hasAnyRole("GUEST", "ADMIN")

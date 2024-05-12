@@ -6,67 +6,65 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import unibuc.clinicmngmnt.domain.Doctor;
-import unibuc.clinicmngmnt.dto.ClinicDto;
-import unibuc.clinicmngmnt.dto.DoctorDto;
+import unibuc.clinicmngmnt.domain.Mechanic;
+import unibuc.clinicmngmnt.dto.MechanicDto;
 import unibuc.clinicmngmnt.exception.NotFoundException;
-import unibuc.clinicmngmnt.exception.SpecialityException;
-import unibuc.clinicmngmnt.service.DoctorService;
+import unibuc.clinicmngmnt.service.MechanicService;
 
 import javax.validation.Valid;
 import java.util.List;
 
 
 @Controller
-@RequestMapping("/doctors")
-public class DoctorController {
-    private final DoctorService doctorService;
+@RequestMapping("/mechanics")
+public class MechanicController {
+    private final MechanicService mechanicService;
 
     // @Autowired implied
-    public DoctorController(DoctorService doctorService) {
-        this.doctorService = doctorService;
+    public MechanicController(MechanicService mechanicService) {
+        this.mechanicService = mechanicService;
     }
     @GetMapping("/new")
-    public String createDoctor(Model model) {
-        model.addAttribute("doctorDto", new DoctorDto());
+    public String createMechanic(Model model) {
+        model.addAttribute("mechanicDto", new MechanicDto());
 
-        return "doctors/doctorsNew.html";
+        return "mechanics/mechanicsNew.html";
     }
     @PostMapping
-    public String createDoctor(
+    public String createMechanic(
             @Valid
             @ModelAttribute
-            DoctorDto doctorDto,
+            MechanicDto mechanicDto,
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "doctors/doctorsNew.html";
+            return "mechanics/mechanicsNew.html";
         }
         try{
-            Doctor createdDoctor = doctorService.createDoctor(doctorDto);
-            return "redirect:/doctors";
+            Mechanic createdMechanic = mechanicService.createMechanic(mechanicDto);
+            return "redirect:/mechanics";
         } catch (final NotFoundException exception) {
             bindingResult.rejectValue("clinicId", "clinicDoesntExists", exception.getMessage());
-            return "doctors/doctorsNew.html";
+            return "mechanics/mechanicsNew.html";
         }
 
     }
 
     @GetMapping("/info/{id}")
-    public String getDoctor(
+    public String getMechanic(
             Model model,
             @PathVariable
             Long id) {
 
-        Doctor doctor = doctorService.getDoctor(id);
-        model.addAttribute("object", doctor);
+        Mechanic mechanic = mechanicService.getMechanic(id);
+        model.addAttribute("object", mechanic);
 
-        return "doctors/doctorsInfo.html";
+        return "mechanics/mechanicsInfo.html";
     }
 
     @GetMapping
     // Default status code 200 (ok)
-    public String getAllDoctors(
+    public String getAllMechanics(
             Model model,
             @RequestParam(required = false)
             String speciality,
@@ -79,18 +77,18 @@ public class DoctorController {
             @RequestParam(defaultValue = "DESC")
             Sort.Direction sortOrder) {
 
-        Page<Doctor> doctorsPage = doctorService.getAllDoctors(speciality, page, size, sortList, sortOrder);
-        model.addAttribute("page", doctorsPage);
+        Page<Mechanic> mechanicsPage = mechanicService.getAllMechanics(speciality, page, size, sortList, sortOrder);
+        model.addAttribute("page", mechanicsPage);
 
-        return "doctors/doctorsList.html";
+        return "mechanics/mechanicsList.html";
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteDoctor(
+    public String deleteMechanic(
             @PathVariable
             Long id) {
-        doctorService.deleteDoctor(id);
-        return "redirect:/doctors";
+        mechanicService.deleteMechanic(id);
+        return "redirect:/mechanics";
     }
 
 

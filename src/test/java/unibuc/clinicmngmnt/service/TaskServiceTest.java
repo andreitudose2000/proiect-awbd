@@ -41,7 +41,7 @@ public class TaskServiceTest {
     String comments = "Comments";
     LocalDateTime startDate = LocalDateTime.now(), endDate = LocalDateTime.now();
     private List<Part> parts = new ArrayList<Part>();
-    private Appointment appointment = new Appointment(appointmentId, (Client) null, (Doctor) null, startDate, endDate, "no comments", (Task) null);
+    private Appointment appointment = new Appointment(appointmentId, (Client) null, (Mechanic) null, startDate, endDate, "no comments", (Task) null);
     private TaskDto taskDto = new TaskDto(appointmentId, comments);
     private Task task = new Task(taskId, appointment, comments, parts);
 

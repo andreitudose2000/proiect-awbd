@@ -9,20 +9,20 @@ import unibuc.clinicmngmnt.exception.NotFoundException;
 import unibuc.clinicmngmnt.mapper.ClinicMapper;
 import unibuc.clinicmngmnt.domain.Clinic;
 import unibuc.clinicmngmnt.repository.ClinicRepository;
-import unibuc.clinicmngmnt.repository.DoctorRepository;
+import unibuc.clinicmngmnt.repository.MechanicRepository;
 
 import java.util.Optional;
 
 @Service
 public class ClinicService {
     private final ClinicRepository clinicRepository;
-    private final DoctorRepository doctorRepository;
+    private final MechanicRepository mechanicRepository;
     private final ClinicMapper clinicMapper;
 
 
-    public ClinicService(ClinicRepository clinicRepository, DoctorRepository doctorRepository, ClinicMapper clinicMapper) {
+    public ClinicService(ClinicRepository clinicRepository, MechanicRepository mechanicRepository, ClinicMapper clinicMapper) {
         this.clinicRepository = clinicRepository;
-        this.doctorRepository = doctorRepository;
+        this.mechanicRepository = mechanicRepository;
         this.clinicMapper = clinicMapper;
     }
 

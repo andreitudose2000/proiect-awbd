@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Doctor {
+public class Mechanic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,17 +28,17 @@ public class Doctor {
     private Clinic clinic;
     @JsonIgnore
     @ToString.Exclude
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "mechanic", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 
-    public Doctor(String firstName, String lastName, Speciality speciality, Clinic clinic) {
+    public Mechanic(String firstName, String lastName, Speciality speciality, Clinic clinic) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;
         this.clinic = clinic;
     }
 
-    public Doctor(String firstName, String lastName, Speciality speciality) {
+    public Mechanic(String firstName, String lastName, Speciality speciality) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;

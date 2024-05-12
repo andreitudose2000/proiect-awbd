@@ -71,10 +71,10 @@ public class AppointmentController {
     public String getAllAppointments(
             Model model,
             @RequestParam(required = false)
-            Long doctorId,
+            Long mechanicId,
             @RequestParam(required = false)
             Long clientId) {
-        List<Appointment> appointments = appointmentService.getAllAppointments(clientId, doctorId);
+        List<Appointment> appointments = appointmentService.getAllAppointments(clientId, mechanicId);
         model.addAttribute("appointments", appointments);
         return "appointments/appointmentsList.html";
     }

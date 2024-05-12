@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import javax.persistence.EntityManager;
 import static org.junit.jupiter.api.Assertions.*;
 import unibuc.clinicmngmnt.domain.Clinic;
-import unibuc.clinicmngmnt.domain.Doctor;
+import unibuc.clinicmngmnt.domain.Mechanic;
 import unibuc.clinicmngmnt.domain.Speciality;
 
 import java.util.Arrays;
@@ -30,23 +30,23 @@ public class EntityManagerTest {
     }
 
     @Test
-    public void findDoctor() {
-        Doctor doctor = entityManager.find(Doctor.class, 1L);
-        assertEquals(doctor.getFirstName(), "Prenume1");
+    public void findMechanic() {
+        Mechanic mechanic = entityManager.find(Mechanic.class, 1L);
+        assertEquals(mechanic.getFirstName(), "Prenume1");
     }
 
     @Test
-    public void saveClinicDoctors() {
+    public void saveClinicMechanics() {
         Clinic clinic = new Clinic();
         clinic.setName("ClinicaTest");
         clinic.setAddress("AdresaTest");
 
-        Doctor doctor = new Doctor();
-        doctor.setFirstName("PrenumeTest");
-        doctor.setLastName("NumeTest");
-        doctor.setSpeciality(Speciality.SURGEON);
+        Mechanic mechanic = new Mechanic();
+        mechanic.setFirstName("PrenumeTest");
+        mechanic.setLastName("NumeTest");
+        mechanic.setSpeciality(Speciality.SURGEON);
 
-        clinic.setDoctors(Arrays.asList(doctor));
+        clinic.setMechanics(Arrays.asList(mechanic));
         entityManager.persist(clinic);
         entityManager.flush();
         entityManager.clear();

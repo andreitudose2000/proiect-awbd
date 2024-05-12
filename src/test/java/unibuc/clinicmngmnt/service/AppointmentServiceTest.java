@@ -7,7 +7,7 @@ import unibuc.clinicmngmnt.dto.AppointmentDto;
 import unibuc.clinicmngmnt.mapper.AppointmentMapper;
 
 import unibuc.clinicmngmnt.repository.ClientRepository;
-import unibuc.clinicmngmnt.repository.DoctorRepository;
+import unibuc.clinicmngmnt.repository.MechanicRepository;
 
 import unibuc.clinicmngmnt.exception.*;
 
@@ -38,11 +38,11 @@ public class AppointmentServiceTest {
     @Mock
     private ClientRepository clientRepository;
     @Mock
-    private DoctorRepository doctorRepository;
+    private MechanicRepository mechanicRepository;
     @InjectMocks
     private AppointmentService appointmentService;
 
-    private long doctorId = 1, clientId = 2, appointmentId = 4;
+    private long mechanicId = 1, clientId = 2, appointmentId = 4;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private LocalDateTime currentDateTimeStart = LocalDateTime.parse("2023-04-23 10:00", formatter);
@@ -50,16 +50,16 @@ public class AppointmentServiceTest {
     private LocalDate currentDateLocalDate = LocalDate.now();
     private String comments = "no comments";
     private Clinic clinic = new Clinic("Name", "Address");
-    private Doctor doctor = new Doctor("John", "Smith", Speciality.SURGEON, clinic);
+    private Mechanic mechanic = new Mechanic("John", "Smith", Speciality.SURGEON, clinic);
     private Client client = new Client("Will", "West", "123456789", "test@email.com", currentDateLocalDate);
     private Task task = new Task("Comments");
-    private AppointmentDto appointmentDto = new AppointmentDto(clientId, doctorId, currentDateTimeStart,
+    private AppointmentDto appointmentDto = new AppointmentDto(clientId, mechanicId, currentDateTimeStart,
             currentDateTimeEnd, comments);
     private Appointment appointmentSaveParam = new Appointment(currentDateTimeStart, currentDateTimeEnd,
             comments);
     private Appointment appointmentMapperReturn = new Appointment(currentDateTimeStart, currentDateTimeEnd,
             comments);
-    private Appointment appointment = new Appointment(appointmentId, client, doctor, currentDateTimeStart,
+    private Appointment appointment = new Appointment(appointmentId, client, mechanic, currentDateTimeStart,
             currentDateTimeEnd, comments,
             task);
     List<Appointment> existingAppointments = new ArrayList<Appointment>();
@@ -67,14 +67,14 @@ public class AppointmentServiceTest {
     @Test
     @DisplayName("Create appointment - happy flow")
     void createAppointmentHappy() {
-        doctor.setId(doctorId);
+        mechanic.setId(mechanicId);
         client.setId(clientId);
 
-        appointmentSaveParam.setDoctor(doctor);
+        appointmentSaveParam.setMechanic(mechanic);
         appointmentSaveParam.setClient(client);
 
         when(appointmentMapper.appointmentDtoToAppointment(appointmentDto)).thenReturn(appointmentMapperReturn);
-        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+        when(mechanicRepository.findById(mechanicId)).thenReturn(Optional.of(mechanic));
         when(clientRepository.findById(clientId)).thenReturn(Optional.of(client));
         when(appointmentRepository.findAll()).thenReturn(existingAppointments);
         when(appointmentRepository.save(appointmentSaveParam)).thenReturn(appointment);
@@ -83,27 +83,27 @@ public class AppointmentServiceTest {
 
         assertNotNull(savedAppointment);
         assertEquals(appointment.getClient().getId(), savedAppointment.getClient().getId());
-        assertEquals(appointment.getDoctor().getId(), savedAppointment.getDoctor().getId());
+        assertEquals(appointment.getMechanic().getId(), savedAppointment.getMechanic().getId());
         assertEquals(appointment.getStartDate(), savedAppointment.getStartDate());
         assertEquals(appointment.getEndDate(), savedAppointment.getEndDate());
         assertEquals(appointment.getComments(), savedAppointment.getComments());
     }
 
     @Test
-    @DisplayName("Create appointment - throw doctor not found exception ")
-    void createAppointmentThrowDoctorNotFound() {
+    @DisplayName("Create appointment - throw mechanic not found exception ")
+    void createAppointmentThrowMechanicNotFound() {
         when(appointmentMapper.appointmentDtoToAppointment(appointmentDto)).thenReturn(appointmentMapperReturn);
-        when(doctorRepository.findById(doctorId)).thenReturn(Optional.empty());
+        when(mechanicRepository.findById(mechanicId)).thenReturn(Optional.empty());
 
         NotFoundException exception = assertThrows(NotFoundException.class, () -> appointmentService.createAppointment(appointmentDto));
-        assertEquals(exception.getMessage(), String.format("Doctor with ID %d not found.", doctorId));
+        assertEquals(exception.getMessage(), String.format("Mecanicul cu ID %d nu a fost gasit.", mechanicId));
     }
 
     @Test
     @DisplayName("Create appointment - throw client not found exception")
     void createAppointmentThrowClientNotFound() {
         when(appointmentMapper.appointmentDtoToAppointment(appointmentDto)).thenReturn(appointmentMapperReturn);
-        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+        when(mechanicRepository.findById(mechanicId)).thenReturn(Optional.of(mechanic));
         when(clientRepository.findById(clientId)).thenReturn(Optional.empty());
 
         NotFoundException exception = assertThrows(NotFoundException.class, () -> appointmentService.createAppointment(appointmentDto));
@@ -113,12 +113,12 @@ public class AppointmentServiceTest {
     @Test
     @DisplayName("Create appointment - throw overlapping appointments exception")
     void createAppointmentThrowAppointmentsOverlapping() {
-        doctor.setId(doctorId);
+        mechanic.setId(mechanicId);
         client.setId(clientId);
         existingAppointments.add(appointment);
 
         when(appointmentMapper.appointmentDtoToAppointment(appointmentDto)).thenReturn(appointmentMapperReturn);
-        when(doctorRepository.findById(doctorId)).thenReturn(Optional.of(doctor));
+        when(mechanicRepository.findById(mechanicId)).thenReturn(Optional.of(mechanic));
         when(clientRepository.findById(clientId)).thenReturn(Optional.of(client));
         when(appointmentRepository.findAll()).thenReturn(existingAppointments);
 
@@ -136,7 +136,7 @@ public class AppointmentServiceTest {
 
         assertNotNull(gottenAppointment);
         assertEquals(appointment.getClient().getId(), gottenAppointment.getClient().getId());
-        assertEquals(appointment.getDoctor().getId(), gottenAppointment.getDoctor().getId());
+        assertEquals(appointment.getMechanic().getId(), gottenAppointment.getMechanic().getId());
         assertEquals(appointment.getStartDate(), gottenAppointment.getStartDate());
         assertEquals(appointment.getEndDate(), gottenAppointment.getEndDate());
         assertEquals(appointment.getComments(), gottenAppointment.getComments());

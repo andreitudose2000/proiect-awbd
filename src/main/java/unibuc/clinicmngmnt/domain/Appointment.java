@@ -19,8 +19,8 @@ public class Appointment {
     @JoinColumn(name = "client_id")
     private Client client;
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    @JoinColumn(name = "mechanic_id")
+    private Mechanic mechanic;
     @Column(name = "start_date")
     private LocalDateTime startDate;
     @Column(name = "end_date")

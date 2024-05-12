@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DoctorDto {
+public class MechanicDto {
     @NotBlank(message = "First name must be provided")
     private String firstName;
     @NotBlank(message = "Last name must be provided")
@@ -23,7 +23,7 @@ public class DoctorDto {
 
     private Long clinicId;
 
-    public DoctorDto(String firstName, String lastName, Speciality speciality) {
+    public MechanicDto(String firstName, String lastName, Speciality speciality) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;

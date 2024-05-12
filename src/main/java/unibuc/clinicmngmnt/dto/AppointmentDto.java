@@ -17,7 +17,7 @@ public class AppointmentDto {
     @NotNull(message = "ID client este obligatoriu")
     private Long clientId;
     @NotNull(message = "ID client este obligatoriu")
-    private Long doctorId;
+    private Long mechanicId;
     @NotNull(message = "Intervalul este obligatoriu")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;

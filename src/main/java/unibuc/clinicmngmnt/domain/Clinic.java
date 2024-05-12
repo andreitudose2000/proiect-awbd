@@ -20,12 +20,12 @@ public class Clinic {
 
     @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<Doctor> doctors = new ArrayList<>();
+    private List<Mechanic> mechanics = new ArrayList<>();
 
-    public Clinic(String name, String address, List<Doctor> doctors) {
+    public Clinic(String name, String address, List<Mechanic> mechanics) {
         this.name = name;
         this.address = address;
-        this.doctors = doctors;
+        this.mechanics = mechanics;
     }
 
     public Clinic(String name, String address) {

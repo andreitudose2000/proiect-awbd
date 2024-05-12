@@ -8,13 +8,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import unibuc.clinicmngmnt.domain.Client;
+import unibuc.clinicmngmnt.domain.Mechanic;
 import unibuc.clinicmngmnt.dto.ClientDto;
 import unibuc.clinicmngmnt.mapper.ClientMapper;
 import unibuc.clinicmngmnt.repository.AppointmentRepository;
 import unibuc.clinicmngmnt.repository.ClientRepository;
 import unibuc.clinicmngmnt.exception.NotFoundException;
 import unibuc.clinicmngmnt.domain.Appointment;
-import unibuc.clinicmngmnt.domain.Doctor;
 import unibuc.clinicmngmnt.domain.Task;
 
 import java.time.LocalDateTime;
@@ -134,7 +134,7 @@ public class ClientServiceTest {
         client.setId(clientId);
 
         List<Appointment> appointments = new ArrayList<Appointment>();
-        Doctor doctor = null;
+        Mechanic mechanic = null;
         Task task = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime nextEndDate = LocalDateTime.parse("2023-04-24 08:45", formatter),
@@ -142,10 +142,10 @@ public class ClientServiceTest {
                 passedStartDate = LocalDateTime.parse("2023-04-22 09:45", formatter),
                 passedEndDate = LocalDateTime.parse("2023-04-22 09:00", formatter);
 
-        Appointment nextAppointment = new Appointment(1l, client, doctor, nextStartDate, nextEndDate,
+        Appointment nextAppointment = new Appointment(1l, client, mechanic, nextStartDate, nextEndDate,
                 "next - should be returned",
                 task),
-                passedAppointment = new Appointment(2l, client, doctor, passedStartDate, passedEndDate,
+                passedAppointment = new Appointment(2l, client, mechanic, passedStartDate, passedEndDate,
                         "passed - should not be returned", task);
         appointments.add(nextAppointment);
         appointments.add(passedAppointment);
